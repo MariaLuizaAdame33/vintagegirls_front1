@@ -1,0 +1,14 @@
+.footer {
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: aqua;
+    color: blueviolet;
+
+}
+
+.footer span{
+    font-weight: bold;
+    color: blueviolet;
+}    
