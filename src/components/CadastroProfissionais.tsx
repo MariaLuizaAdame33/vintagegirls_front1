@@ -52,7 +52,7 @@ dados,
     }
 }).then(function(response){
     console.log(response)
-   // window.location.href = "/listagem/profissionais"
+    window.location.href = "/listagem/profissionais"
 }).catch(function(error){
     console.log(error);
     console.log(dados);
