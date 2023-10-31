@@ -4,7 +4,7 @@ import Header from './Header';
 import styles from '../router/App.module.css';
 import axios from 'axios';
 
-const Cadastro = () => {
+const CadastroProfissionais = () => {
 
 const [nome, setNome] = useState<string>("")
 const [celular, setCelular] = useState<string>("")
@@ -19,6 +19,7 @@ const [numero, setNumero] = useState<string>("")
 const [bairro, setBairro] = useState<string>("")
 const [cep, setCep] = useState<string>("")
 const [complemento, setComplemento] = useState<string>("")
+const [salario, setSalario] = useState<string>("")
 const [senha, setSenha] = useState<string>("")
 //useState = estado do componente
 
@@ -39,9 +40,10 @@ const dados = {
     bairro:bairro,
     cep:cep,
     complemento:complemento,
+    salario:salario,
     senha:senha
 }
-axios.post('http://127.0.0.1:8000/api/cliente/store',
+axios.post('http://127.0.0.1:8000/api/profissional/store',
 dados,
 {
     headers: {
@@ -50,7 +52,7 @@ dados,
     }
 }).then(function(response){
     console.log(response)
-    window.location.href = "/listagem"
+   // window.location.href = "/listagem/profissionais"
 }).catch(function(error){
     console.log(error);
     console.log(dados);
@@ -98,6 +100,9 @@ const handleState = (e:ChangeEvent<HTMLInputElement>) => {
     if(e.target.name === "email"){
         setEmail(e.target.value);
     }
+    if(e.target.name === "salario"){
+        setSalario(e.target.value);
+    }
     if(e.target.name === "senha"){
         setSenha(e.target.value);
     }
@@ -110,7 +115,7 @@ const handleState = (e:ChangeEvent<HTMLInputElement>) => {
                 <div className='container'>
                     <div className='card'>
                         <div className='card-body'>
-                            <h5 className='card-title'>Cadastrar Cliente</h5> 
+                            <h5 className='card-title'>Cadastro de Profissionais</h5> 
                             <form onSubmit={cadastrarUsuario} className='row g-3'>
                                 <div className='col-6'>
                                     <label htmlFor="nome" className='form-label'>Nome</label>
@@ -189,6 +194,11 @@ const handleState = (e:ChangeEvent<HTMLInputElement>) => {
                                 </div>
 
                                 <div className='col-6'>
+                                    <label htmlFor="salario" className='form-label'>Salario</label>
+                                    <input type="text" name='salario' className='form-control' required onChange={handleState}/>
+                                </div>
+
+                                <div className='col-6'>
                                     <label htmlFor="senha" className='form-label'>Senha</label>
                                     <input type="text" name='senha' className='form-control' required onChange={handleState}/>
                                 </div>
@@ -212,4 +222,4 @@ const handleState = (e:ChangeEvent<HTMLInputElement>) => {
     );
 }
 
-export default Cadastro;
+export default CadastroProfissionais;

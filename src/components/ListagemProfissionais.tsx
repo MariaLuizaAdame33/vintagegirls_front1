@@ -1,12 +1,12 @@
 import axios from 'axios';
 import React, {Component, useState, ChangeEvent, FormEvent,useEffect} from 'react';
 import styles from "../router/App.module.css";
-import { CadastroClienteInterfaces } from '../interfaces/CadastroClienteInterfaces';
+import { CadastroProfissionaisInterfaces } from '../interfaces/CadastroProfissionaisInterfaces';
 
 
-const Listagem = () => {
+const ListagemProfissionais = () => {
 
-    const[usuarios,setUsuarios] = useState<CadastroClienteInterfaces[]>([]);
+    const[usuarios,setUsuarios] = useState<CadastroProfissionaisInterfaces[]>([]);
     const[pesquisa, setPesquisa]= useState<string>('');
     const[error,setError]=useState("");
 
@@ -22,7 +22,7 @@ const Listagem = () => {
         async function fetchData(){
             try{
             
-            const response = await axios.post('http://127.0.0.1:8000/api/cliente/nome',{nome : pesquisa},{
+            const response = await axios.post('http://127.0.0.1:8000/api/profissional/nome',{nome : pesquisa},{
                 headers:{
                     "Accept":"application/json",
                     "Content-Type": "application/json"
@@ -44,7 +44,7 @@ const Listagem = () => {
     useEffect(()=>{
         async function fetchData(){
             try{
-                const response = await axios.get('http://127.0.0.1:8000/api/cliente/all');
+                const response = await axios.get('http://127.0.0.1:8000/api/profissional/all');
                 setUsuarios(response.data.data);
 
             }catch(error){
@@ -89,7 +89,7 @@ const Listagem = () => {
                     <div className='card'>
                         <div className='card-body'>
                             <h5 className='card-title'>
-                                Listagem de Clientes
+                                Listagem de Profissionais
                             </h5>
                             <table className='table table-hover'>
                                 <thead>
@@ -108,6 +108,7 @@ const Listagem = () => {
                                         <th>Complemento</th>
                                         <th>CPF</th>
                                         <th>E-mail</th>
+                                        <th>Salario</th>
                                         <th>Ações</th>
                                     </tr>
                                 </thead>
@@ -127,6 +128,7 @@ const Listagem = () => {
                                     <td>{usuario.cep}</td>
                                     <td>{usuario.cpf}</td>
                                     <td>{usuario.email}</td>
+                                    <td>{usuario.salario}</td>
                                     <td>
                                         <a href="#" className='btn btn-primary btn-sm'>Editar</a>
                                         <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
@@ -147,4 +149,4 @@ const Listagem = () => {
     );
 }
 
-export default Listagem;
+export default ListagemProfissionais;

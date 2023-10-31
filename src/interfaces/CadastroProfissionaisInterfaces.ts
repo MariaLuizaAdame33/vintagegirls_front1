@@ -1,4 +1,4 @@
-export interface CadastroClienteInterfaces{
+export interface CadastroProfissionaisInterfaces{
     id:number;
     nome:string;
     celular:string;
@@ -13,5 +13,6 @@ export interface CadastroClienteInterfaces{
     complemento:string;
     email:string;
     cpf:string;
+    salario:string;
     senha:string;
 }
