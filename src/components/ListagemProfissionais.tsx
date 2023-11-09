@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, {Component, useState, ChangeEvent, FormEvent,useEffect} from 'react';
 import styles from "../router/App.module.css";
 import { CadastroProfissionaisInterfaces } from '../interfaces/CadastroProfissionaisInterfaces';
+import { Link } from 'react-router-dom';
 
 
 const ListagemProfissionais = () => {
@@ -130,7 +131,7 @@ const ListagemProfissionais = () => {
                                     <td>{usuario.email}</td>
                                     <td>{usuario.salario}</td>
                                     <td>
-                                        <a href="#" className='btn btn-primary btn-sm'>Editar</a>
+                                        <Link to={"profissional/editar"+usuario.id} className='btn btn-primary btn-sm'>Editar</Link>
                                         <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
                                     </td>
                                     </tr>
