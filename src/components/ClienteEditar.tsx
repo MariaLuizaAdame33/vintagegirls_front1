@@ -51,7 +51,7 @@ const EditarCliente = () => {
 
         }
 
-        axios.put('http://127.0.0.1:8000/api/cliente/update',
+        axios.put('http://127.0.0.1:8000/api/cliente/editar',
             dados,
             {
                 headers: {
@@ -59,7 +59,7 @@ const EditarCliente = () => {
                     "Content-Type": "application/json"
                 }
             }).then(function (response) {
-                window.location.href = "cilente/editar"
+                window.location.href = "/listagem"
             }).catch(function (error) {
                 console.log(error);
             });
@@ -200,7 +200,7 @@ const EditarCliente = () => {
                     <div className='col-6'>
                         <label htmlFor='dataNascimento' className='form-label'>Data de Nascimento</label>
                         <input type='text'
-                            name='datanascimento'
+                            name='dataNascimento'
                             className='form-control'
                             required
                             onChange={handleState}

@@ -129,7 +129,7 @@ const Listagem = () => {
                                     <td>{usuario.cpf}</td>
                                     <td>{usuario.email}</td>
                                     <td>
-                                        <Link to={"cliente/editar"+usuario.id} className='btn btn-primary btn-sm'>Editar</Link>
+                                        <Link to={"/cliente/editar/"+usuario.id} className='btn btn-primary btn-sm'>Editar</Link>
                                         <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
                                     </td>
                                     </tr>

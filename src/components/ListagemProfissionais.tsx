@@ -131,7 +131,7 @@ const ListagemProfissionais = () => {
                                     <td>{usuario.email}</td>
                                     <td>{usuario.salario}</td>
                                     <td>
-                                        <Link to={"profissional/editar"+usuario.id} className='btn btn-primary btn-sm'>Editar</Link>
+                                        <Link to={"/profissional/editar/"+usuario.id} className='btn btn-primary btn-sm'>Editar</Link>
                                         <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
                                     </td>
                                     </tr>

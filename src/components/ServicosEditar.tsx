@@ -31,7 +31,7 @@ const EditarServico = () => {
            
         }
 
-        axios.put('http://127.0.0.1:8000/api/servico/editar',
+        axios.put('http://127.0.0.1:8000/api/servicos/editar',
             dados,
             {
                 headers: {
@@ -39,7 +39,7 @@ const EditarServico = () => {
                     "Content-Type": "application/json"
                 }
             }).then(function (response) {
-                window.location.href = "/ListagemServicos"
+                window.location.href = "/listagem/servicos/"
             }).catch(function (error) {
                 console.log(error);
             });
