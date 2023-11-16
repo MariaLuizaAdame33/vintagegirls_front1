@@ -31,7 +31,7 @@ const EditarServico = () => {
            
         }
 
-        axios.put('http://127.0.0.1:8000/api/servicos/editar',
+        axios.put('http://127.0.0.1:8000/api/servicos/editar/',
             dados,
             {
                 headers: {
@@ -48,14 +48,13 @@ const EditarServico = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get("http://127.0.0.1:8000/api/servico/find/" + parametro.id);
+                const response = await axios.get("http://127.0.0.1:8000/api/servicos/find/" + parametro.id);
                 setId(response.data.data.id);
                 setNome(response.data.data.nome);
                 setDescricao(response.data.data.descricao);
                 setDuracao(response.data.data.duracao);
                 setPreco(response.data.data.preco);
-                console.log(response)
-
+               
 
             } catch (error) {
                 console.log("erro ao buscar dados de api")

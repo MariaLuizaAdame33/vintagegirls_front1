@@ -68,7 +68,7 @@ const EditarCliente = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get("http://127.0.0.1:8000/api/cliente/find" + parametro.id);
+                const response = await axios.get("http://127.0.0.1:8000/api/cliente/find/" + parametro.id);
                 setId(response.data.data.id);
                 setNome(response.data.data.nome);
                 setCelular(response.data.data.celular);
@@ -84,12 +84,10 @@ const EditarCliente = () => {
                 setCep(response.data.data.cep);
                 setComplemento(response.data.data.complemento);
                 setSenha(response.data.data.senha);
-                console.log(response)
-
 
             } catch (error) {
                 console.log("erro ao buscar dados de api")
-                console.log(error)
+
             }
         }
 

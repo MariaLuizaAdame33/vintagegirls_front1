@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, {Component, useState, ChangeEvent, FormEvent,useEffect} from 'react';
 import styles from "../router/App.module.css";
 import { CadastroClienteInterfaces } from '../interfaces/CadastroServicosInterfaces';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const ListagemServicos = () => {
@@ -17,13 +17,24 @@ const ListagemServicos = () => {
         }
     }
 
+    function excluir (id: number) {
+        const confirm = window.confirm('Você tem certeza que deseja excluir?');
+        if (confirm)
+            axios.delete('http://127.0.0.1:8000/api/servicos/excluir/' + id)
+                .then(function (response) {
+                    window.location.href = "/listagem/servicos/"
+                }).catch(function (error) {
+                    console.log('Ocorreu um erro ao excluir');
+                })
+    }
+
     const buscar = (e:FormEvent)=>{
         e.preventDefault();
 
         async function fetchData(){
             try{
             
-            const response = await axios.post('http://127.0.0.1:8000/api/nome',{nome : pesquisa},{
+            const response = await axios.post('http://127.0.0.1:8000/api/servicos/nome/',{nome : pesquisa},{
                 headers:{
                     "Accept":"application/json",
                     "Content-Type": "application/json"
@@ -113,7 +124,7 @@ const ListagemServicos = () => {
                                 
                                     <td>
                                         <Link to={"/servicos/editar/"+usuario.id} className='btn btn-primary btn-sm'>Editar</Link>
-                                        <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
+                                        <button onClick={() => excluir(usuario.id)} className='button btn-black btn-sm'>Excluir</button>
                                     </td>
                                     </tr>
                                     ))}

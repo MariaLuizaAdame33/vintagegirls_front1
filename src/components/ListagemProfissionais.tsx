@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, {Component, useState, ChangeEvent, FormEvent,useEffect} from 'react';
 import styles from "../router/App.module.css";
 import { CadastroProfissionaisInterfaces } from '../interfaces/CadastroProfissionaisInterfaces';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const ListagemProfissionais = () => {
@@ -15,6 +15,17 @@ const ListagemProfissionais = () => {
         if(e.target.name ==="pesquisa"){
             setPesquisa(e.target.value);
         }
+    }
+
+    function excluir (id: number) {
+        const confirm = window.confirm('Você tem certeza que deseja excluir?');
+        if (confirm)
+            axios.delete('http://127.0.0.1:8000/api/profissional/excluir/' + id)
+                .then(function (response) {
+                    window.location.href = "/listagem/profissionais/"
+                }).catch(function (error) {
+                    console.log('Ocorreu um erro ao excluir');
+                })
     }
 
     const buscar = (e:FormEvent)=>{
@@ -132,7 +143,7 @@ const ListagemProfissionais = () => {
                                     <td>{usuario.salario}</td>
                                     <td>
                                         <Link to={"/profissional/editar/"+usuario.id} className='btn btn-primary btn-sm'>Editar</Link>
-                                        <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
+                                        <button onClick={() => excluir(usuario.id)} className='button btn-black btn-sm'>Excluir</button>
                                     </td>
                                     </tr>
                                     ))}

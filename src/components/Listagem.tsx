@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, {Component, useState, ChangeEvent, FormEvent,useEffect} from 'react';
 import styles from "../router/App.module.css";
 import { CadastroClienteInterfaces } from '../interfaces/CadastroClienteInterfaces';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const Listagem = () => {
@@ -10,11 +10,23 @@ const Listagem = () => {
     const[usuarios,setUsuarios] = useState<CadastroClienteInterfaces[]>([]);
     const[pesquisa, setPesquisa]= useState<string>('');
     const[error,setError]=useState("");
+    const navigate = useNavigate();
 
     const handleState = (e: ChangeEvent<HTMLInputElement>)=>{
         if(e.target.name ==="pesquisa"){
             setPesquisa(e.target.value);
         }
+    }
+
+    function excluir (id: number) {
+        const confirm = window.confirm('Você tem certeza que deseja excluir?');
+        if (confirm)
+            axios.delete('http://127.0.0.1:8000/api/cliente/excluir/' + id)
+                .then(function (response) {
+                    window.location.href = "/listagem/"
+                }).catch(function (error) {
+                    console.log('Ocorreu um erro ao excluir');
+                })
     }
 
     const buscar = (e:FormEvent)=>{
@@ -109,7 +121,7 @@ const Listagem = () => {
                                         <th>Complemento</th>
                                         <th>CPF</th>
                                         <th>E-mail</th>
-                                        <th>Ações</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -126,11 +138,12 @@ const Listagem = () => {
                                     <td>{usuario.numero}</td>
                                     <td>{usuario.bairro}</td>
                                     <td>{usuario.cep}</td>
+                                    <td>{usuario.complemento}</td>
                                     <td>{usuario.cpf}</td>
                                     <td>{usuario.email}</td>
                                     <td>
                                         <Link to={"/cliente/editar/"+usuario.id} className='btn btn-primary btn-sm'>Editar</Link>
-                                        <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
+                                        <button onClick={() => excluir(usuario.id)} className='button btn-black btn-sm'>Excluir</button>
                                     </td>
                                     </tr>
                                     ))}

@@ -108,6 +108,23 @@ const handleState = (e:ChangeEvent<HTMLInputElement>) => {
     }
 }
 
+const findCep = (e: FormEvent) => {
+    e.preventDefault();
+
+    fetch('https://viacep.com.br/ws/' + cep + '/json/', {
+        method: 'GET'
+    }).then(response => response.json())
+        .then(
+            data => {
+                setCidade(data.localidade);
+
+                setEstado(data.uf);
+
+            }
+        ).catch(error => { console.log("Pesquisa Inválida") });
+
+}
+
     return (
         <div>
         <Header />
@@ -142,20 +159,22 @@ const handleState = (e:ChangeEvent<HTMLInputElement>) => {
                                 </div>
 
                                 <div className='col-6'>
-                                    <label htmlFor="numero" className='form-label'>Numero</label>
-                                    <input type="text" name='numero' className='form-control' required onChange={handleState}/>
+                                    <label htmlFor="cep" className='form-label'>CEP</label>
+                                    <input type="text" name='cep' onBlur={findCep} className='form-control' required onChange={handleState}/>
 
                                 </div>
 
+                            
+
                                 <div className='col-6'>
                                     <label htmlFor="cidade" className='form-label'>Cidade</label>
-                                    <input type="text" name='cidade' className='form-control' required onChange={handleState}/>
+                                    <input type="text" name='cidade' value={cidade} className='form-control' required onChange={handleState}/>
 
                                 </div>
 
                                 <div className='col-6'>
                                     <label htmlFor="estado" className='form-label'>Estado</label>
-                                    <input type="text" name='estado' className='form-control' required onChange={handleState}/>
+                                    <input type="text" name='estado' value={estado} className='form-control' required onChange={handleState}/>
 
                                 </div>
 
@@ -172,10 +191,12 @@ const handleState = (e:ChangeEvent<HTMLInputElement>) => {
                                 </div>
 
                                 <div className='col-6'>
-                                    <label htmlFor="cep" className='form-label'>CEP</label>
-                                    <input type="text" name='cep' className='form-control' required onChange={handleState}/>
+                                    <label htmlFor="numero" className='form-label'>Numero</label>
+                                    <input type="text" name='numero' className='form-control' required onChange={handleState}/>
 
                                 </div>
+
+                                
                                 <div className='col-6'>
                                     <label htmlFor="bairro" className='form-label'>Bairro</label>
                                     <input type="text" name='bairro' className='form-control' required onChange={handleState}/>
