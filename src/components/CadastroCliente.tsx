@@ -4,6 +4,7 @@ import Header from './Header';
 import styles from '../router/App.module.css';
 import axios from 'axios';
 import '../components/estilo.css'
+import Swal from 'sweetalert2';
 
 const Cadastro = () => {
 
@@ -52,11 +53,16 @@ const Cadastro = () => {
                 }
             }).then(function (response) {
                 console.log(response)
-                //window.location.href = "/listagem"
+                window.location.href = "/listagem"
             }).catch(function (error) {
                 console.log(error);
                 console.log(dados);
             });
+            Swal.fire({
+                title: "Cadastrado com Sucesso!",
+                text: "Novo cliente cadastrado!",
+                icon: "success"
+              });
 
     }
 

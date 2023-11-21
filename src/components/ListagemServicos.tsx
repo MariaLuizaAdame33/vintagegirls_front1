@@ -34,7 +34,7 @@ const ListagemServicos = () => {
         async function fetchData(){
             try{
             
-            const response = await axios.post('http://127.0.0.1:8000/api/servicos/nome/',{nome : pesquisa},{
+            const response = await axios.post('http://127.0.0.1:8000/api/servicos/nome',{nome : pesquisa},{
                 headers:{
                     "Accept":"application/json",
                     "Content-Type": "application/json"
