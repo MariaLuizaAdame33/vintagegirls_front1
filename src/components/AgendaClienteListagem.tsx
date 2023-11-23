@@ -1,13 +1,13 @@
 import axios from 'axios';
 import React, {Component, useState, ChangeEvent, FormEvent,useEffect} from 'react';
 import styles from "../router/App.module.css";
-import { CadastroClienteInterfaces } from '../interfaces/CadastroClienteInterfaces';
+import { AgendaClienteInterfaces } from '../interfaces/AgendaClienteInterfaces';
 import { Link, useNavigate } from 'react-router-dom';
 
 
-const Listagem = () => {
+const AgendaClienteListagem = () => {
 
-    const[usuarios,setUsuarios] = useState<CadastroClienteInterfaces[]>([]);
+    const[usuarios,setUsuarios] = useState<AgendaClienteInterfaces[]>([]);
     const[pesquisa, setPesquisa]= useState<string>('');
     const[error,setError]=useState("");
     const navigate = useNavigate();
@@ -21,9 +21,9 @@ const Listagem = () => {
     function excluir (id: number) {
         const confirm = window.confirm('Você tem certeza que deseja excluir?');
         if (confirm)
-            axios.delete('http://127.0.0.1:8000/api/cliente/excluir/' + id)
+            axios.delete('http://127.0.0.1:8000/api/agenda/excluir/' + id)
                 .then(function (response) {
-                    window.location.href = "/listagem/"
+                    window.location.href = "/agenda/cliente/listagem"
                 }).catch(function (error) {
                     console.log('Ocorreu um erro ao excluir');
                 })
@@ -35,7 +35,7 @@ const Listagem = () => {
         async function fetchData(){
             try{
             
-            const response = await axios.post('http://127.0.0.1:8000/api/cliente/nome',{nome : pesquisa},{
+            const response = await axios.post('http://127.0.0.1:8000/api/agenda/find/{id}/',{id : pesquisa},{
                 headers:{
                     "Accept":"application/json",
                     "Content-Type": "application/json"
@@ -59,7 +59,7 @@ const Listagem = () => {
     useEffect(()=>{
         async function fetchData(){
             try{
-                const response = await axios.get('http://127.0.0.1:8000/api/cliente/all');
+                const response = await axios.get('http://127.0.0.1:8000/api/agenda/all');
                 setUsuarios(response.data.data);
 
             }catch(error){
@@ -104,25 +104,20 @@ const Listagem = () => {
                     <div className='card'>
                         <div className='card-body'>
                             <h5 className='card-title'>
-                            𝑳𝒊𝒔𝒕𝒂𝒈𝒆𝒎 𝒅𝒆 𝑪𝒍𝒊𝒆𝒏𝒕𝒆𝒔
+                            𝑳𝒊𝒔𝒕𝒂𝒈𝒆𝒎 𝒅𝒆 Agendamentos
                             </h5>
                             <table className='table table-hover'>
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Nome</th>
-                                        <th>Celular</th>
-                                        <th>Data de Nascimento</th>
-                                        <th>Cidade</th>
-                                        <th>Estado</th>
-                                        <th>País</th>
-                                        <th>Rua</th>
-                                        <th>Numero</th>
-                                        <th>Bairro</th>
-                                        <th>Cep</th>
-                                        <th>Complemento</th>
-                                        <th>CPF</th>
-                                        <th>E-mail</th>
+                                        <th>Profissional</th>
+                                        <th>Cliente</th>
+                                        <th>Horario e Data</th>
+                                        <th>Serviço</th>
+                                        <th>Valor</th>
+                                        <th>Tipo de Pagamento</th>
+                                        
+                                    
                                         
                                     </tr>
                                 </thead>
@@ -130,21 +125,15 @@ const Listagem = () => {
                                    { usuarios.map(usuario=>(
                                     <tr key={usuario.id}>
                                     <td>{usuario.id}</td>
-                                    <td>{usuario.nome}</td>
-                                    <td>{usuario.celular}</td>
-                                    <td>{usuario.dataNascimento}</td>
-                                    <td>{usuario.cidade}</td>
-                                    <td>{usuario.estado}</td>
-                                    <td>{usuario.pais}</td>
-                                    <td>{usuario.rua}</td>
-                                    <td>{usuario.numero}</td>
-                                    <td>{usuario.bairro}</td>
-                                    <td>{usuario.cep}</td>
-                                    <td>{usuario.complemento}</td>
-                                    <td>{usuario.cpf}</td>
-                                    <td>{usuario.email}</td>
+                                    <td>{usuario.profissional_id}</td>
+                                    <td>{usuario.cliente_id}</td>
+                                    <td>{usuario.horario_data}</td>
+                                    <td>{usuario.servico_id}</td>
+                                    <td>{usuario.valor}</td>
+                                    <td>{usuario.tipo_pagamento}</td>
+                                    
                                     <td>
-                                        <Link to={"/cliente/editar/"+usuario.id} className='btn btn-primary btn-sm'>Editar</Link>
+                                        <Link to={"/agenda/editar/"+usuario.id} className='btn btn-primary btn-sm'>Editar</Link>
                                         <button onClick={() => excluir(usuario.id)} className='button btn-black btn-sm'>Excluir</button>
                                     </td>
                                     </tr>
@@ -163,4 +152,4 @@ const Listagem = () => {
     );
 }
 
-export default Listagem;
+export default AgendaClienteListagem;

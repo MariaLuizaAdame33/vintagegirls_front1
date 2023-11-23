@@ -5,6 +5,7 @@ import { CadastroClienteInterfaces } from '../interfaces/CadastroServicosInterfa
 import { Link, useNavigate } from 'react-router-dom';
 
 
+
 const ListagemServicos = () => {
 
     const[usuarios,setUsuarios] = useState<CadastroClienteInterfaces[]>([]);
@@ -26,6 +27,8 @@ const ListagemServicos = () => {
                 }).catch(function (error) {
                     console.log('Ocorreu um erro ao excluir');
                 })
+
+               
     }
 
     const buscar = (e:FormEvent)=>{
@@ -80,7 +83,7 @@ const ListagemServicos = () => {
                     <div className='col-md mb-3'>
                         <div className='card'>
                             <div className='card-body'>
-                                <h5 className='card-title'>Pesquisar</h5>
+                                <h5 className='card-title'>ℙ𝕖𝕤𝕢𝕦𝕚𝕤𝕒𝕣</h5>
                                 <form onSubmit={buscar} className='row'>
                                     <div className='col-10'>
                                         <input type="text" name="pesquisa" className='form-control' onChange={handleState}/>
@@ -101,7 +104,7 @@ const ListagemServicos = () => {
                     <div className='card'>
                         <div className='card-body'>
                             <h5 className='card-title'>
-                                Listagem de Serviços
+                            𝑳𝒊𝒔𝒕𝒂𝒈𝒆𝒎 𝒅𝒆 𝑺𝒆𝒓𝒗𝒊𝒄̧𝒐𝒔
                             </h5>
                             <table className='table table-hover'>
                                 <thead>

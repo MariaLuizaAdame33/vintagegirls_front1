@@ -3,6 +3,7 @@ import Footer from './Footer';
 import Header from './Header';
 import styles from '../router/App.module.css';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const CadastroProfissionais = () => {
 
@@ -57,6 +58,13 @@ dados,
     console.log(error);
     console.log(dados);
 });
+
+Swal.fire({
+    title: "Cadastrado com Sucesso!",
+    text: "Novo Profissional cadastrado!",
+    icon: "success"
+  });
+
 
 }
 
@@ -132,7 +140,7 @@ const findCep = (e: FormEvent) => {
                 <div className='container'>
                     <div className='card'>
                         <div className='card-body'>
-                            <h5 className='card-title'>Cadastro de Profissionais</h5> 
+                            <h5 className='card-title'>𝑪𝒂𝒅𝒂𝒔𝒕𝒓𝒐 𝒅𝒆 𝑷𝒓𝒐𝒇𝒊𝒔𝒔𝒊𝒐𝒏𝒂𝒊𝒔</h5> 
                             <form onSubmit={cadastrarUsuario} className='row g-3'>
                                 <div className='col-6'>
                                     <label htmlFor="nome" className='form-label'>Nome</label>

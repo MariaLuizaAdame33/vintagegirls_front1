@@ -7,6 +7,7 @@ import Footer from './Footer';
 import styles from '../router/App.module.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 
 const EditarCliente = () => {
@@ -29,6 +30,10 @@ const EditarCliente = () => {
 
     const parametro = useParams();
 
+
+
+
+    
     const atualizar = (e: FormEvent) => {
         e.preventDefault();
 
@@ -63,6 +68,12 @@ const EditarCliente = () => {
             }).catch(function (error) {
                 console.log(error);
             });
+
+            Swal.fire({
+                title: "Atualizado com Sucesso!",
+                text: "Cliente Atualizado!",
+                icon: "success"
+              });
     }
 
     useEffect(() => {

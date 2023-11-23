@@ -7,6 +7,7 @@ import Footer from './Footer';
 import styles from '../router/App.module.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 
 const EditarProfissional = () => {
@@ -65,6 +66,12 @@ const EditarProfissional = () => {
             }).catch(function (error) {
                 console.log(error);
             });
+
+            Swal.fire({
+                title: "Atualizado com Sucesso!",
+                text: " Profissional atualizado!",
+                icon: "success"
+              });
     }
 
     useEffect(() => {

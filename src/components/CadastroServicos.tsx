@@ -3,6 +3,7 @@ import Footer from './Footer';
 import Header from './Header';
 import styles from '../router/App.module.css';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const CadastroServicos = () => {
 
@@ -38,6 +39,13 @@ dados,
     console.log(dados);
 });
 
+Swal.fire({
+    title: "Cadastrado com Sucesso!",
+    text: "Novo cliente cadastrado!",
+    icon: "success"
+  });
+
+
 }
 
 const handleState = (e:ChangeEvent<HTMLInputElement>) => {
@@ -63,7 +71,7 @@ const handleState = (e:ChangeEvent<HTMLInputElement>) => {
                 <div className='container'>
                     <div className='card'>
                         <div className='card-body'>
-                            <h5 className='card-title'>Cadastrar Serviços</h5> 
+                            <h5 className='card-title'>𝑪𝒂𝒅𝒂𝒔𝒕𝒓𝒐 𝒅𝒆 𝑺𝒆𝒓𝒗𝒊𝒄̧𝒐𝒔</h5> 
                             <form onSubmit={cadastrarUsuario} className='row g-3'>
                                 <div className='col-6'>
                                     <label htmlFor="nome" className='form-label'>Nome</label>

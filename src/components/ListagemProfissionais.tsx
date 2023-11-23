@@ -80,7 +80,7 @@ const ListagemProfissionais = () => {
                     <div className='col-md mb-3'>
                         <div className='card'>
                             <div className='card-body'>
-                                <h5 className='card-title'>Pesquisar</h5>
+                                <h5 className='card-title'>ℙ𝕖𝕤𝕢𝕦𝕚𝕤𝕒𝕣</h5>
                                 <form onSubmit={buscar} className='row'>
                                     <div className='col-10'>
                                         <input type="text" name="pesquisa" className='form-control' onChange={handleState}/>
@@ -101,7 +101,7 @@ const ListagemProfissionais = () => {
                     <div className='card'>
                         <div className='card-body'>
                             <h5 className='card-title'>
-                                Listagem de Profissionais
+                            𝑳𝒊𝒔𝒕𝒂𝒈𝒆𝒎 𝒅𝒆 𝑷𝒓𝒐𝒇𝒊𝒔𝒔𝒊𝒐𝒏𝒂𝒊𝒔
                             </h5>
                             <table className='table table-hover'>
                                 <thead>

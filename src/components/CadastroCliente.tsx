@@ -133,7 +133,7 @@ const Cadastro = () => {
                     <div className='container'>
                         <div className='card'>
                             <div className='card-body'>
-                                <h5 className='card-title'>Cadastrar Cliente</h5>
+                                <h5 className='card-title'>𝑪𝒂𝒅𝒂𝒔𝒕𝒓𝒐 𝒅𝒆 𝑪𝒍𝒊𝒆𝒏𝒕𝒆𝒔</h5>
                                 <form onSubmit={cadastrarUsuario} className='row g-3'>
                                     <div className='col-6'>
                                         <label htmlFor="nome" className='form-label'>Nome</label>
