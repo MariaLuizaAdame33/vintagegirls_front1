@@ -111,13 +111,11 @@ const ListagemProfissionais = () => {
                                         <th>Celular</th>
                                         <th>Data de Nascimento</th>
                                         <th>Cidade</th>
-                                        <th>Estado</th>
-                                        <th>País</th>
+                                        <th>Estado</th>                                   
                                         <th>Rua</th>
                                         <th>Numero</th>
                                         <th>Bairro</th>
                                         <th>Cep</th>
-                                        <th>Complemento</th>
                                         <th>CPF</th>
                                         <th>E-mail</th>
                                         <th>Salario</th>
@@ -133,7 +131,6 @@ const ListagemProfissionais = () => {
                                     <td>{usuario.dataNascimento}</td>
                                     <td>{usuario.cidade}</td>
                                     <td>{usuario.estado}</td>
-                                    <td>{usuario.pais}</td>
                                     <td>{usuario.rua}</td>
                                     <td>{usuario.numero}</td>
                                     <td>{usuario.bairro}</td>
@@ -144,6 +141,7 @@ const ListagemProfissionais = () => {
                                     <td>
                                         <Link to={"/profissional/editar/"+usuario.id} className='btn btn-primary btn-sm'>Editar</Link>
                                         <button onClick={() => excluir(usuario.id)} className='button btn-black btn-sm'>Excluir</button>
+                                        <Link to={"/recuperarsenha"} className='btn btn-primary btn-sm'>Alterar</Link>
                                     </td>
                                     </tr>
                                     ))}

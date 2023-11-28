@@ -146,6 +146,7 @@ const Listagem = () => {
                                     <td>
                                         <Link to={"/cliente/editar/"+usuario.id} className='btn btn-primary btn-sm'>Editar</Link>
                                         <button onClick={() => excluir(usuario.id)} className='button btn-black btn-sm'>Excluir</button>
+                                        <Link to={"/recuperarsenha"} className='btn btn-primary btn-sm'>Alterar</Link>
                                     </td>
                                     </tr>
                                     ))}

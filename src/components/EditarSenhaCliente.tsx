@@ -44,7 +44,7 @@ const MudaSenhaCliente     = () => {
 
 
 
-        axios.put('http://127.0.0.1:8000/api/recuperar/senha/cliente',
+        axios.put('http://127.0.0.1:8000/api/cliente/senha',
             dados,
             {
                 headers: {
@@ -52,14 +52,16 @@ const MudaSenhaCliente     = () => {
                     "Content-Type": "application/json"
                 }
             }).then(function (response) {
-
-
+                window.location.href = "/listagem"
+                console.log(response.data);
             }).catch(function (error) {
                 console.log(error)
 
             });
 
 
+
+         
 
     }
 
