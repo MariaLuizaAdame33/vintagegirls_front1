@@ -11,10 +11,19 @@ const [nome, setNome] = useState<string>("")
 const [duracao, setDuracao] = useState<string>("")
 const [descricao, setDescricao] = useState<string>("")
 const [preco, setPreco] = useState<string>("")
+const [nomeErro, setNomeErro] = useState<string>("")
+const [duracaoErro, setDuracaoErro] = useState<string>("")
+const [descricaoErro, setDescricaoErro] = useState<string>("")
+const [precoErro, setPrecoErro] = useState<string>("")
 
 //useState = estado do componente
 
 const cadastrarUsuario = (e: FormEvent) => {
+    setNomeErro("")
+    setDuracaoErro("")
+    setDescricaoErro("")
+    setPrecoErro("")
+
 e.preventDefault();
 
 const dados = {
@@ -32,18 +41,33 @@ dados,
         "Content-Type": "application/json"
     }
 }).then(function(response){
-    console.log(response)
-    window.location.href = "/listagem/servicos"
+    if ('nome' in response.data.error) {
+        setNomeErro(response.data.error.nome[0]);
+    }
+    if ('duracao' in response.data.error) {
+        setDuracaoErro(response.data.error.duracao[0]);
+    }
+    if ('descricao' in response.data.error) {
+        setDescricaoErro(response.data.error.descricao[0]);
+
+    }
+    if ('preco' in response.data.error) {
+        setPrecoErro(response.data.error.preco[0]);
+    }else{
+        Swal.fire({
+            title: "Cadastrado com Sucesso!",
+            text: "Novo serviço cadastrado!",
+            icon: "success"
+          });
+        
+        window.location.href = "/listagem/servicos"
+    }
+   
 }).catch(function(error){
     console.log(error);
     console.log(dados);
 });
 
-Swal.fire({
-    title: "Cadastrado com Sucesso!",
-    text: "Novo cliente cadastrado!",
-    icon: "success"
-  });
 
 
 }
@@ -76,24 +100,28 @@ const handleState = (e:ChangeEvent<HTMLInputElement>) => {
                                 <div className='col-6'>
                                     <label htmlFor="nome" className='form-label'>Nome</label>
                                     <input type="text" name="nome" className='form-control' required onChange={handleState}/>
+                                    <div className='text-danger'>{nomeErro}</div>
                                    
                                 </div>
 
                                 <div className='col-6'>
                                     <label htmlFor="duracao" className='form-label'>Duração</label>
                                     <input type="text" name='duracao' className='form-control' required onChange={handleState}/>
+                                    <div className='text-danger'>{duracaoErro}</div>
 
                                 </div>
 
                                 <div className='col-6'>
                                     <label htmlFor="descricao" className='form-label'>Descrição</label>
                                     <input type="text" name='descricao' className='form-control' required onChange={handleState}/>
+                                    <div className='text-danger'>{descricaoErro}</div>
 
                                 </div>
 
                                 <div className='col-6'>
                                     <label htmlFor="preco" className='form-label'>Preço</label>
                                     <input type="text" name='preco' className='form-control' required onChange={handleState}/>
+                                    <div className='text-danger'>{precoErro}</div>
 
                                 </div>
 

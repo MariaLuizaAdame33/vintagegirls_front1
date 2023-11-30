@@ -57,7 +57,7 @@ const AgendaEditar = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get("http://127.0.0.1:8000/api/agenda/find/{id}" + parametro.id);
+                const response = await axios.get("http://127.0.0.1:8000/api/agenda/find/" + parametro.id);
                 setData(response.data.data.horario_data);
                 setProfissonal(response.data.data.profissional_id);
                 setPagamento(response.data.data.pagamento);
